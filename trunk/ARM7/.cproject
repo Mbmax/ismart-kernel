@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?>
+
+<cproject>
+<storageModule moduleId="org.eclipse.cdt.core.settings">
+<cconfiguration id="cdt.managedbuild.config.arm40.exe.release.728702441">
+<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.config.arm40.exe.release.728702441" moduleId="org.eclipse.cdt.core.settings" name="Release">
+<externalSettings/>
+<extensions>
+<extension id="com.arm.eclipse.cdt.managedbuilder.ARMELF" point="org.eclipse.cdt.core.BinaryParser"/>
+<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+<extension id="org.eclipse.cdt.core.GNU_ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+<extension id="com.arm.eclipse.cdt.managedbuilder.RealViewCoreToolsErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+<extension id="org.eclipse.cdt.core.MakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+</extensions>
+</storageModule>
+<storageModule moduleId="org.eclipse.cdt.core.pathentry"/>
+<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+<configuration artifactExtension="axf" artifactName="MoonShell2_ARM7" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.release,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe" description="" errorParsers="org.eclipse.cdt.core.MakeErrorParser;com.arm.eclipse.cdt.managedbuilder.RealViewCoreToolsErrorParser" id="cdt.managedbuild.config.arm40.exe.release.728702441" name="Release" parent="cdt.managedbuild.config.arm40.exe.release" postannouncebuildStep="" postbuildStep="fromelf --bin --output=../../arm7.bin MoonShell2_ARM7.axf" preannouncebuildStep="" prebuildStep="">
+<folderInfo id="cdt.managedbuild.config.arm40.exe.release.728702441." name="/" resourcePath="">
+<toolChain id="cdt.managedbuild.toolchain.arm40.exe.release.1777498731" name="ARM RealView 编译工具 4.0" superClass="cdt.managedbuild.toolchain.arm40.exe.release">
+<targetPlatform id="cdt.managedbuild.target.arm40.exe.457462368" superClass="cdt.managedbuild.target.arm40.exe"/>
+<builder autoBuildTarget="" buildPath="${workspace_loc:/MoonShell2_ARM7/Release}" cleanBuildTarget="" id="cdt.managedbuild.target.arm.builder40.exe.974620656" incrementalBuildTarget="" keepEnvironmentInBuildfile="false" name="CDT Internal Builder" superClass="cdt.managedbuild.target.arm.builder40.exe"/>
+<tool id="cdt.managedbuild.tool.arm.armcc40.exe.1283939472" name="ARM RealView 编译器 4.0" superClass="cdt.managedbuild.tool.arm.armcc40.exe">
+<option id="arm.rvct.armcc40.option.CONFIG_CPU.438538468" name="体系结构或处理器&#10; (--cpu=)" superClass="arm.rvct.armcc40.option.CONFIG_CPU" value="arm.rvct.armcc.option.CONFIG_CPU.ARM7TDMI" valueType="enumerated"/>
+<option id="arm.rvct.armcc40.option.CONFIG_FPU.1956427501" name="浮点 (--fpu=)" superClass="arm.rvct.armcc40.option.CONFIG_FPU" value="arm.rvct.armcc.option.CONFIG_FPU.SoftVFP" valueType="enumerated"/>
+<option id="arm.rvct.armcc40.option.CONFIG_B_ENDIAN.1723797934" name="字节顺序" superClass="arm.rvct.armcc40.option.CONFIG_B_ENDIAN" value="小端 [缺省值]" valueType="enumerated"/>
+<option id="arm.rvct.armcc40.option.CONFIG_ISET.1136592103" name="初始状态" superClass="arm.rvct.armcc40.option.CONFIG_ISET" value="arm.rvct.armcc40.option.CONFIG_ISET.ISET_ARM" valueType="enumerated"/>
+<option id="arm.rvct.armcc40.option.CONFIG_LANG.930153289" name="源语言" superClass="arm.rvct.armcc40.option.CONFIG_LANG" value="arm.rvct.armcc40.option.CONFIG_LANG.LANG_CPP" valueType="enumerated"/>
+<option id="arm.rvct.armcc40.option.CONFIG_FPMODE.2090308122" name="浮点模型&#10; (--fpmode=)" superClass="arm.rvct.armcc40.option.CONFIG_FPMODE" value="arm.rvct.armcc.option.CONFIG_FPMODE.fast" valueType="enumerated"/>
+<option id="arm.rvct.armcc40.option.CONFIG_APCS.503844222" name="过程调用标准选项 (--apcs=)" superClass="arm.rvct.armcc40.option.CONFIG_APCS" valueType="stringList">
+<listOptionValue builtIn="false" value="inter"/>
+</option>
+<option id="arm.rvct.armcc40.option.CONFIG_GNU.1615446299" name="GNU 语言扩展 (--gnu)" superClass="arm.rvct.armcc40.option.CONFIG_GNU" value="true" valueType="boolean"/>
+<option id="arm.rvct.armcc40.option.override.OPTLEVEL.1788818869" name="优化&#10;级别 (-O)" superClass="arm.rvct.armcc40.option.override.OPTLEVEL" value="arm.rvct.armcc.option.OPTLEVEL.3" valueType="enumerated"/>
+<option id="arm.rvct.armcc40.option.OPTTIME.1941949024" name="优化 (-O)" superClass="arm.rvct.armcc40.option.OPTTIME" value="arm.rvct.armcc.option.OPTTIME.time" valueType="enumerated"/>
+<option id="arm.rvct.armcc40.option.CONFIG_DEFINE.176257452" name="#DEFINE 列表 (-D)" superClass="arm.rvct.armcc40.option.CONFIG_DEFINE" valueType="definedSymbols">
+<listOptionValue builtIn="false" value="ARM7"/>
+<listOptionValue builtIn="false" value="USE_MP2"/>
+<listOptionValue builtIn="false" value="ASO_INTERLEAVE1"/>
+<listOptionValue builtIn="false" value="ASO_IMDCT"/>
+<listOptionValue builtIn="false" value="OPT_ACCURACY"/>
+<listOptionValue builtIn="false" value="IGNORE_MAD_LAYER_I"/>
+<listOptionValue builtIn="false" value="_FPM_ARM"/>
+<listOptionValue builtIn="false" value="FPM_DEFAULT"/>
+</option>
+<option id="arm.rvct.armcc40.option.INCLUDE_PATH.1648219110" name="用户 Include 路径 (-I)" superClass="arm.rvct.armcc40.option.INCLUDE_PATH" valueType="includePath">
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MAT_ARM7/source}&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MAT_ARM7/source/fpga}&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MAT_ARM7/source/libmp2}&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MAT_ARM7/source/libnds}&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MAT_ARM7/source/resources}&quot;"/>
+</option>
+<option id="arm.rvct.armcc40.option.DIAG_SUPPRESS.18855127" name="抑制 (--diag_suppress=)" superClass="arm.rvct.armcc40.option.DIAG_SUPPRESS" valueType="stringList">
+<listOptionValue builtIn="false" value="A1477"/>
+</option>
+<inputType id="cdt.managedbuild.tool.abstract.head.arm.armcc.input.1217959311" superClass="cdt.managedbuild.tool.abstract.head.arm.armcc.input"/>
+</tool>
+<tool id="cdt.managedbuild.tool.arm.armasm40.exe.531665301" name="ARM RealView 汇编器 4.0" superClass="cdt.managedbuild.tool.arm.armasm40.exe">
+<option id="arm.rvct.armasm40.option.CONFIG_CPU.850110706" name="体系结构或处理器&#10; (--cpu=)" superClass="arm.rvct.armasm40.option.CONFIG_CPU" value="ARM7TDMI [缺省值]" valueType="enumerated"/>
+<option id="arm.rvct.armasm40.option.CONFIG_FPU.1368475554" name="浮点 (--fpu=)" superClass="arm.rvct.armasm40.option.CONFIG_FPU" value="arm.rvct.armasm.option.CONFIG_FPU.SoftVFP" valueType="enumerated"/>
+<option id="arm.rvct.armasm40.option.CONFIG_B_ENDIAN.1506531127" name="字节顺序" superClass="arm.rvct.armasm40.option.CONFIG_B_ENDIAN" value="小端 [缺省值]" valueType="enumerated"/>
+<option id="arm.rvct.armasm40.option.ARM.2105927838" name="初始状态" superClass="arm.rvct.armasm40.option.ARM" value="arm.rvct.armasm40.option.ARM.1" valueType="enumerated"/>
+<option id="arm.rvct.armasm40.option.CONFIG_FPMODE.1545205741" name="浮点模型&#10; (--fpmode=)" superClass="arm.rvct.armasm40.option.CONFIG_FPMODE" value="arm.rvct.armasm.option.CONFIG_FPMODE.fast" valueType="enumerated"/>
+<option id="arm.rvct.armasm40.option.CONFIG_APCS.521803745" name="过程调用标准选项 (--apcs=)" superClass="arm.rvct.armasm40.option.CONFIG_APCS" valueType="stringList">
+<listOptionValue builtIn="false" value="inter"/>
+</option>
+<option id="arm.rvct.armasm40.option.INCLUDE.732673893" name="Include 路径 (-I)" superClass="arm.rvct.armasm40.option.INCLUDE" valueType="includePath">
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MAT_ARM7/source}&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MAT_ARM7/source/fpga}&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MAT_ARM7/source/libmp2}&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MAT_ARM7/source/libnds}&quot;"/>
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MAT_ARM7/source/resources}&quot;"/>
+</option>
+<inputType id="cdt.managedbuild.tool.abstract.head.arm.armasm.input.829705575" superClass="cdt.managedbuild.tool.abstract.head.arm.armasm.input"/>
+</tool>
+<tool id="cdt.managedbuild.tool.arm.armlink40.366900524" name="ARM RealView 链接器 4.0" superClass="cdt.managedbuild.tool.arm.armlink40">
+<option id="arm.rvct.armlink40.option.CONFIG_CPU.218045920" name="体系结构或处理器&#10; (--cpu=)" superClass="arm.rvct.armlink40.option.CONFIG_CPU" value="ARM7TDMI [缺省值]" valueType="enumerated"/>
+<option id="arm.rvct.armlink40.option.CONFIG_FPU.82428445" name="浮点 (--fpu=)" superClass="arm.rvct.armlink40.option.CONFIG_FPU" value="arm.rvct.armlink.option.CONFIG_FPU.SoftVFP" valueType="enumerated"/>
+<option id="arm.rvct.armlink40.option.CONFIG_B_ENDIAN.231599156" name="字节顺序" superClass="arm.rvct.armlink40.option.CONFIG_B_ENDIAN" value="小端 [缺省值]" valueType="enumerated"/>
+<option id="arm.rvct.armlink40.option.CONFIG_FPMODE.1620525126" name="浮点模型&#10; (--fpmode=)" superClass="arm.rvct.armlink40.option.CONFIG_FPMODE" value="arm.rvct.armlink.option.CONFIG_FPMODE.fast" valueType="enumerated"/>
+<option id="arm.rvct.armlink40.option.FEEDBACK.779198805" name="反馈文件&#10; (--feedback=)" superClass="arm.rvct.armlink40.option.FEEDBACK" value="feedback.txt" valueType="string"/>
+<option id="arm.rvct.armlink40.option.SCATTER.1867347153" name="分散描述&#10;文件 (--scatter=)" superClass="arm.rvct.armlink40.option.SCATTER" value="&quot;../source/internal/memregion.txt&quot;" valueType="string"/>
+<option id="arm.rvct.armlink40.option.SYMDEFS.1538006463" name="符号描述&#10;文件 (--symdefs=)" superClass="arm.rvct.armlink40.option.SYMDEFS" value="memmap.txt" valueType="string"/>
+<option id="arm.rvct.armlink40.option.LIST.2043398576" name="列表文件名称&#10; (--list=)" superClass="arm.rvct.armlink40.option.LIST" value="list.txt" valueType="string"/>
+<option id="arm.rvct.armlink40.option.XREF.555944482" name="节交叉引用 (--xref)" superClass="arm.rvct.armlink40.option.XREF" value="true" valueType="boolean"/>
+<option id="arm.rvct.armlink40.option.SYMBOLS.698466662" name="符号 (--symbols)" superClass="arm.rvct.armlink40.option.SYMBOLS" value="true" valueType="boolean"/>
+<option id="arm.rvct.armlink40.option.MANGLED.757080372" name="重整 C++ (--mangled)" superClass="arm.rvct.armlink40.option.MANGLED" value="true" valueType="boolean"/>
+<option id="arm.rvct.armlink40.option.MAP.1958667567" name="映像映射 (--map)" superClass="arm.rvct.armlink40.option.MAP" value="true" valueType="boolean"/>
+</tool>
+</toolChain>
+</folderInfo>
+</configuration>
+</storageModule>
+<storageModule moduleId="scannerConfiguration">
+<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile"/>
+<profile id="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile">
+<buildOutputProvider>
+<openAction enabled="true" filePath=""/>
+<parser enabled="true"/>
+</buildOutputProvider>
+<scannerInfoProvider id="specsFile">
+<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="gcc" useDefault="true"/>
+<parser enabled="true"/>
+</scannerInfoProvider>
+</profile>
+<profile id="org.eclipse.cdt.make.core.GCCStandardMakePerFileProfile">
+<buildOutputProvider>
+<openAction enabled="true" filePath=""/>
+<parser enabled="true"/>
+</buildOutputProvider>
+<scannerInfoProvider id="makefileGenerator">
+<runAction arguments="-f ${project_name}_scd.mk" command="make" useDefault="true"/>
+<parser enabled="true"/>
+</scannerInfoProvider>
+</profile>
+<profile id="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfile">
+<buildOutputProvider>
+<openAction enabled="true" filePath=""/>
+<parser enabled="true"/>
+</buildOutputProvider>
+<scannerInfoProvider id="specsFile">
+<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="gcc" useDefault="true"/>
+<parser enabled="true"/>
+</scannerInfoProvider>
+</profile>
+<profile id="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP">
+<buildOutputProvider>
+<openAction enabled="true" filePath=""/>
+<parser enabled="true"/>
+</buildOutputProvider>
+<scannerInfoProvider id="specsFile">
+<runAction arguments="-E -P -v -dD ${plugin_state_location}/specs.cpp" command="g++" useDefault="true"/>
+<parser enabled="true"/>
+</scannerInfoProvider>
+</profile>
+<profile id="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC">
+<buildOutputProvider>
+<openAction enabled="true" filePath=""/>
+<parser enabled="true"/>
+</buildOutputProvider>
+<scannerInfoProvider id="specsFile">
+<runAction arguments="-E -P -v -dD ${plugin_state_location}/specs.c" command="gcc" useDefault="true"/>
+<parser enabled="true"/>
+</scannerInfoProvider>
+</profile>
+<profile id="org.eclipse.cdt.managedbuilder.core.GCCWinManagedMakePerProjectProfile">
+<buildOutputProvider>
+<openAction enabled="true" filePath=""/>
+<parser enabled="true"/>
+</buildOutputProvider>
+<scannerInfoProvider id="specsFile">
+<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="gcc" useDefault="true"/>
+<parser enabled="true"/>
+</scannerInfoProvider>
+</profile>
+<profile id="org.eclipse.cdt.managedbuilder.core.GCCWinManagedMakePerProjectProfileCPP">
+<buildOutputProvider>
+<openAction enabled="true" filePath=""/>
+<parser enabled="true"/>
+</buildOutputProvider>
+<scannerInfoProvider id="specsFile">
+<runAction arguments="-E -P -v -dD ${plugin_state_location}/specs.cpp" command="g++" useDefault="true"/>
+<parser enabled="true"/>
+</scannerInfoProvider>
+</profile>
+<profile id="org.eclipse.cdt.managedbuilder.core.GCCWinManagedMakePerProjectProfileC">
+<buildOutputProvider>
+<openAction enabled="true" filePath=""/>
+<parser enabled="true"/>
+</buildOutputProvider>
+<scannerInfoProvider id="specsFile">
+<runAction arguments="-E -P -v -dD ${plugin_state_location}/specs.c" command="gcc" useDefault="true"/>
+<parser enabled="true"/>
+</scannerInfoProvider>
+</profile>
+</storageModule>
+<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+<storageModule moduleId="org.eclipse.cdt.core.language.mapping"/>
+</cconfiguration>
+</storageModule>
+<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+<project id="MoonShell2_ARM7.cdt.managedbuild.target.arm40.exe.765288768" name="Executable" projectType="cdt.managedbuild.target.arm40.exe"/>
+</storageModule>
+</cproject>
