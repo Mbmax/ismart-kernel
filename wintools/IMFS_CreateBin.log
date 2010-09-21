@@ -1,0 +1,164 @@
+ImplantFilesystem CreateBin
+ver 0.2
+
+binfn:IMFSROM.bin
+Sizekb:0(0byte)
+ArcPath:files\
+
+ReservedArea=0byte
+Create FileSystem
+search files\*.*
+load files\*.*
+path files\.. 0
+path files\comps 0
+path files\folders 0
+path files\plugins 0
+path files\sndeff 0
+path files\system 0
+load ZLIB files\calenderfont.glf 984->580byte
+load ZLIB files\digits.tgf 14134->5382byte
+load ZLIB files\itemslistbg.b15 98310->11132byte
+load ZLIB files\settingbg.b15 98310->8372byte
+load ZLIB files\standbyclockampmfont.tgf 13860->2363byte
+load ZLIB files\standbyclockhmfont.tgf 77388->12564byte
+load ZLIB files\standbyclocksfont.tgf 25258->5356byte
+load ZLIB files\tgficon_belldisabled.tgf 526->396byte
+load ZLIB files\tgficon_bellenabled.tgf 486->450byte
+load ZLIB files\timerbodybg.b15 196614->20325byte
+load ZLIB files\timererror.b15 98310->986byte
+load ZLIB files\vm_linner.tgf 5486->966byte
+load ZLIB files\vm_square.tgf 5302->584byte
+path files\comps\.. 1
+load ZLIB files\comps\arrowleftbtn.b15 518->138byte
+load ZLIB files\comps\arrowrightbtn.b15 518->136byte
+load ZLIB files\comps\backlightbtn.b15 518->305byte
+load ZLIB files\comps\backlightttl.b15 518->291byte
+load ZLIB files\comps\boxmin.b15 344->72byte
+load ZLIB files\comps\boxplus.b15 344->74byte
+load ZLIB files\comps\cancel.b15 486->87byte
+load ZLIB files\comps\chkoff.b15 344->67byte
+load ZLIB files\comps\chkon.b15 344->102byte
+load ZLIB files\comps\clkeditbtn.b15 518->482byte
+load ZLIB files\comps\clkendbtn.b15 518->279byte
+load ZLIB files\comps\clkset0ttl.b15 518->448byte
+load ZLIB files\comps\clkset1ttl.b15 518->471byte
+load ZLIB files\comps\clkstartbtn.b15 2054->812byte
+load ZLIB files\comps\downbtn.b15 1326->317byte
+load ZLIB files\comps\fileselbtn.b15 518->239byte
+load ZLIB files\comps\ok.b15 518->76byte
+load ZLIB files\comps\radiooff.b15 294->96byte
+load ZLIB files\comps\radioon.b15 294->101byte
+load ZLIB files\comps\settingbg.b15 98310->8372byte
+load ZLIB files\comps\startbgmbtn.b15 518->280byte
+load ZLIB files\comps\startbgmttl.b15 518->258byte
+load ZLIB files\comps\systembtn.b15 422->198byte
+load ZLIB files\comps\systemttl.b15 518->203byte
+load ZLIB files\comps\upbtn.b15 1326->335byte
+path files\folders\.. 2
+load ZLIB files\folders\fileselected_eng.b15 98310->13873byte
+load ZLIB files\folders\fileselected_jpn.b15 98310->14136byte
+load ZLIB files\folders\folderdlgbg.b15 65542->11011byte
+load ZLIB files\folders\icon_folder.tgf 346->179byte
+load ZLIB files\folders\icon_sndfile0.tgf 410->295byte
+load ZLIB files\folders\icon_sndfile1.tgf 374->293byte
+path files\plugins\.. 3
+load ZLIB files\plugins\mp3.msp 97932->67391byte
+load ZLIB files\plugins\ogg.msp 83136->42732byte
+load ZLIB files\plugins\spc.msp 37612->13702byte
+load ZLIB files\plugins\tta.msp 31392->11087byte
+load ZLIB files\plugins\wav.msp 4364->2439byte
+path files\sndeff\.. 4
+load Flat files\sndeff\snd_battery.ttb 8608byte
+load Flat files\sndeff\snd_click.ttb 10796byte
+load Flat files\sndeff\snd_curdown.ttb 1984byte
+load Flat files\sndeff\snd_curup.ttb 2040byte
+load Flat files\sndeff\snd_movepage.ttb 14352byte
+load Flat files\sndeff\snd_notify.ttb 10796byte
+load Flat files\sndeff\snd_open.ttb 72856byte
+path files\system\.. 5
+load ZLIB files\system\bootwarn.b15 98310->4495byte
+load ZLIB files\system\guidxcrcerror.b15 98310->3568byte
+load ZLIB files\system\jp12pix.glf 393244->111349byte
+load ZLIB files\system\licensesbg.b15 98310->3088byte
+load ZLIB files\system\notfinddefaultfile.b15 98310->8261byte
+MultiHashCount=57
+writepath 0 \ 0 19 (\)
+writepath 1 \comps 19 26 (\comps)
+writepath 2 \folders 45 7 (\folders)
+writepath 3 \plugins 52 6 (\plugins)
+writepath 4 \sndeff 58 8 (\sndeff)
+writepath 5 \system 66 6 (\system)
+writefile 0 0 .. 0 (..)
+writefile 1 0 comps 0 (comps)
+writefile 2 0 folders 0 (folders)
+writefile 3 0 plugins 0 (plugins)
+writefile 4 0 sndeff 0 (sndeff)
+writefile 5 0 system 0 (system)
+writefile 6 4 calenderfont.glf 0 (CALEND~1.GLF)
+writefile 7 4 digits.tgf 0 (digits.tgf)
+writefile 8 4 itemslistbg.b15 0 (ITEMSL~1.B15)
+writefile 9 4 settingbg.b15 0 (SETTIN~1.B15)
+writefile 10 4 standbyclockampmfont.tgf 0 (STANDB~1.TGF)
+writefile 11 4 standbyclockhmfont.tgf 0 (STANDB~2.TGF)
+writefile 12 4 standbyclocksfont.tgf 0 (STANDB~3.TGF)
+writefile 13 4 tgficon_belldisabled.tgf 0 (TGFICO~1.TGF)
+writefile 14 4 tgficon_bellenabled.tgf 0 (TGFICO~2.TGF)
+writefile 15 4 timerbodybg.b15 0 (TIMERB~1.B15)
+writefile 16 4 timererror.b15 0 (TIMERE~1.B15)
+writefile 17 4 vm_linner.tgf 0 (VM_LIN~1.TGF)
+writefile 18 4 vm_square.tgf 0 (VM_SQU~1.TGF)
+writefile 19 0 comps\.. 1 (comps\..)
+writefile 20 4 comps\arrowleftbtn.b15 1 (comps\ARROWL~1.B15)
+writefile 21 4 comps\arrowrightbtn.b15 1 (comps\ARROWR~1.B15)
+writefile 22 4 comps\backlightbtn.b15 1 (comps\BACKLI~1.B15)
+writefile 23 4 comps\backlightttl.b15 1 (comps\BACKLI~2.B15)
+writefile 24 4 comps\boxmin.b15 1 (comps\boxmin.b15)
+writefile 25 4 comps\boxplus.b15 1 (comps\boxplus.b15)
+writefile 26 4 comps\cancel.b15 1 (comps\cancel.b15)
+writefile 27 4 comps\chkoff.b15 1 (comps\chkoff.b15)
+writefile 28 4 comps\chkon.b15 1 (comps\chkon.b15)
+writefile 29 4 comps\clkeditbtn.b15 1 (comps\CLKEDI~1.B15)
+writefile 30 4 comps\clkendbtn.b15 1 (comps\CLKEND~1.B15)
+writefile 31 4 comps\clkset0ttl.b15 1 (comps\CLKSET~1.B15)
+writefile 32 4 comps\clkset1ttl.b15 1 (comps\CLKSET~2.B15)
+writefile 33 4 comps\clkstartbtn.b15 1 (comps\CLKSTA~1.B15)
+writefile 34 4 comps\downbtn.b15 1 (comps\downbtn.b15)
+writefile 35 4 comps\fileselbtn.b15 1 (comps\FILESE~1.B15)
+writefile 36 4 comps\ok.b15 1 (comps\ok.b15)
+writefile 37 4 comps\radiooff.b15 1 (comps\radiooff.b15)
+writefile 38 4 comps\radioon.b15 1 (comps\radioon.b15)
+writefile 39 4 comps\settingbg.b15 1 (comps\SETTIN~1.B15)
+writefile 40 4 comps\startbgmbtn.b15 1 (comps\STARTB~1.B15)
+writefile 41 4 comps\startbgmttl.b15 1 (comps\STARTB~2.B15)
+writefile 42 4 comps\systembtn.b15 1 (comps\SYSTEM~1.B15)
+writefile 43 4 comps\systemttl.b15 1 (comps\SYSTEM~2.B15)
+writefile 44 4 comps\upbtn.b15 1 (comps\upbtn.b15)
+writefile 45 0 folders\.. 2 (folders\..)
+writefile 46 4 folders\fileselected_eng.b15 2 (folders\FILESE~1.B15)
+writefile 47 4 folders\fileselected_jpn.b15 2 (folders\FILESE~2.B15)
+writefile 48 4 folders\folderdlgbg.b15 2 (folders\FOLDER~1.B15)
+writefile 49 4 folders\icon_folder.tgf 2 (folders\ICON_F~1.TGF)
+writefile 50 4 folders\icon_sndfile0.tgf 2 (folders\ICON_S~1.TGF)
+writefile 51 4 folders\icon_sndfile1.tgf 2 (folders\ICON_S~2.TGF)
+writefile 52 0 plugins\.. 3 (plugins\..)
+writefile 53 4 plugins\mp3.msp 3 (plugins\mp3.msp)
+writefile 54 4 plugins\ogg.msp 3 (plugins\ogg.msp)
+writefile 55 4 plugins\spc.msp 3 (plugins\spc.msp)
+writefile 56 4 plugins\tta.msp 3 (plugins\tta.msp)
+writefile 57 4 plugins\wav.msp 3 (plugins\wav.msp)
+writefile 58 0 sndeff\.. 4 (sndeff\..)
+writefile 59 1 sndeff\snd_battery.ttb 4 (sndeff\SND_BA~1.TTB)
+writefile 60 1 sndeff\snd_click.ttb 4 (sndeff\SND_CL~1.TTB)
+writefile 61 1 sndeff\snd_curdown.ttb 4 (sndeff\SND_CU~1.TTB)
+writefile 62 1 sndeff\snd_curup.ttb 4 (sndeff\SND_CU~2.TTB)
+writefile 63 1 sndeff\snd_movepage.ttb 4 (sndeff\SND_MO~1.TTB)
+writefile 64 1 sndeff\snd_notify.ttb 4 (sndeff\SND_NO~1.TTB)
+writefile 65 1 sndeff\snd_open.ttb 4 (sndeff\snd_open.ttb)
+writefile 66 0 system\.. 5 (system\..)
+writefile 67 4 system\bootwarn.b15 5 (system\bootwarn.b15)
+writefile 68 4 system\guidxcrcerror.b15 5 (system\GUIDXC~1.B15)
+writefile 69 4 system\jp12pix.glf 5 (system\jp12pix.glf)
+writefile 70 4 system\licensesbg.b15 5 (system\LICENS~1.B15)
+writefile 71 4 system\notfinddefaultfile.b15 5 (system\NOTFIN~1.B15)
+UsedArea 518456byte
+Terminate.
