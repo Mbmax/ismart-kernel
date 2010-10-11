@@ -140,7 +140,27 @@ void BootRomProgress(int iCnt,int flg)
 	    delete pTmpBM; pTmpBM=NULL;
 	} 
 }
-
+static void CheckNDSfile(const char *pFilename)
+{
+    FAT_FILE *FileHandle=FAT2_fopen_AliasForRead(pFilename);  
+    u32 FileSize=FAT2_GetFileSize(FileHandle);
+    FAT2_fclose(FileHandle);
+    _consolePrintf(" NDS FileSize = %x\n",FileSize);
+    uint32 clusterSize =  GetSecPerCls() ;
+    _consolePrintf(" cluster Size = %x\n",clusterSize);
+    switch(clusterSize)
+    {
+    case 4:if(FileSize <= 0x10000000) break;	//8K 16SecPerClus
+    case 3:if(FileSize <= 0x8000000) break;		//4K 8SecPerClus
+    case 2: //2K 4SecPerClus
+    	_consolePrint("Can not open this NDS file.\n");
+    	_consolePrint("Need reformat your TF card use 16Kbyte/cluster or larger.\n");
+    	ShowLogHalt();
+    	break;
+    default:break;
+    
+    }
+}
 //homebrew booting
 CODE_IN_ITCM void HomeBrewRebootITCM(bool bMidstage)
 {
@@ -357,6 +377,7 @@ static void BackupDLDIBody(const char *pFilename)
           _consolePrint("Can not open HomeBrew file.\n");
           _ShowLogHalt();
         }
+        CheckNDSfile(pFilename);
         u32 FileSize=FAT2_GetFileSize(FileHandle);
         MemClearAllFreeBlocks();
         uint32 *p2x = (uint32*)0x27FFE00 ;
@@ -624,7 +645,7 @@ void RebootCommercialNDSROM(const char *pFilename)
       _consolePrint("Can not open NDS file.\n");
       _ShowLogHalt();
     }
-    u32 FileSize=FAT2_GetFileSize(FileHandle);
+    CheckNDSfile(pFilename);
     MemClearAllFreeBlocks();  
     //read Cartridge Header to 0x27FFE00£¬´óÐ¡0x160 size
     uint32 *p2x = (uint32*)0x27FFE00 ;
