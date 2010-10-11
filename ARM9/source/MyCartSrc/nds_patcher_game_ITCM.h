@@ -1,4 +1,45 @@
 //////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+CODE_IN_ITCM uint32 fix_data_5215[]={
+		 0xE59F003C,0xE5901000,0xE59F2038,0xE1510002,
+		 0x059F1034,0x05801008,0x05801148,0x059F102C,
+		 0x058010A8,0x058011E8,0xE59F0024,0xE5901000,
+		 0xE59F2020,0xE1510002,0x03A01001,0x05C0100A,
+		 0xE12FFF1E,0x02188084,0xE15F034F,0x36AAB337,
+		 0x36AAE06A,0x02180C80,0x28AAFF1F,
+};
+CODE_IN_ITCM void patch_5215(void)//口袋 白
+{
+	if(*(vuint32*)0X02004EA4 == 0XE12FFF1E)
+	{
+		*(vuint32*)0X02004EA4 = 0xEAFFFDD5;	
+		//--ww-- 登记写入
+		WritePatchInfo_4BYTE((uint32)0X02004EA4,(uint32)0xEAFFFDD5);
+		for(int tt=0;tt<23;tt++)
+		{
+			*((vuint32*)0x02004600 + tt) = fix_data_5215[tt];
+		}
+		//--ww-- 登记写入
+		WritePatchInfo((uint32)0x02004600,23*4,fix_data_5215);
+	}	
+}
+CODE_IN_ITCM void patch_5216(void)//口袋 黑
+{
+	if(*(vuint32*)0X02004EA4 == 0XE12FFF1E)
+	{
+		*(vuint32*)0X02004EA4 = 0xEAFFFDED;	
+		//--ww-- 登记写入
+		WritePatchInfo_4BYTE((uint32)0X02004EA4,(uint32)0xEAFFFDED);
+		fix_data_5215[17] = 0x02188064;
+		fix_data_5215[21] = 0x02180C60;
+		for(int tt=0;tt<23;tt++)
+		{
+			*((vuint32*)0x02004660 + tt) = fix_data_5215[tt];
+		}
+		//--ww-- 登记写入
+		WritePatchInfo((uint32)0x02004660,23*4,fix_data_5215);
+	}	
+}
 CODE_IN_ITCM void patch_4638(void)//魔法门
 {
 	uint32* patch_4638_data = (uint32*)0x01FF7000;
@@ -222,7 +263,24 @@ CODE_IN_ITCM inline void fix_4915()//老子制造
 	//--ww-- 登记写入
 	WritePatchInfo((uint32)0x020039C8,10*4,fix_data_3690);
 }
-
+//---------------------
+CODE_IN_ITCM inline void fix_4951()
+{
+	fix_data_3690[7] = 0X02000300;
+	for(int tt=0;tt<10;tt++)
+	{
+		*((uint32*)0x0206176c + tt) = fix_data_3690[tt];//WRITEFLASH
+	}
+	//--ww-- 登记写入
+	WritePatchInfo((uint32)0x0206176c,10*4,fix_data_3690);
+	fix_data_3690[7] = 0X02000304;
+	for(int tt=0;tt<10;tt++)
+	{
+		*((uint32*)0x02061ac4 + tt) = fix_data_3690[tt];//READFLASH
+	}
+	//--ww-- 登记写入
+	WritePatchInfo((uint32)0x02061ac4,10*4,fix_data_3690);
+}
 //---------------------------------------------------
 CODE_IN_ITCM inline void fix_4377()//罪恶覆灭计划:刑警新兵
 {
@@ -459,6 +517,27 @@ CODE_IN_ITCM void patchSpecialGame(uint32 *r0_start,uint32 *r1_end)
 		WritePatchInfo_4BYTE((uint32)0x020E9120,0xE3A00002);
 		*(vuint32*)0x020E9124 = 0xEA000029; 
 		WritePatchInfo_4BYTE((uint32)0x020E9124,0xEA000029);
+		break;
+	case 0x28:
+		patch_5215();//口袋 白
+		break;
+	case 0x29:
+		patch_5216();//口袋 黑
+		break;
+	case 0x2E://4951 大合奏
+		{	
+			*(vuint32*)0x020E8354 = 0xDF0B0000; //SWI B
+			WritePatchInfo_4BYTE((uint32)0x020E8354,0xDF0B0000);
+			copyCode((void*)((uint32)SAVE_32M_3690_start),(void*)0x2000300,(uint32)SAVE_32M_3690_end-(uint32)SAVE_32M_3690_start);
+			//--ww-- 登记写入
+			WritePatchInfo((uint32)0x2000300,(uint32)SAVE_32M_3690_end-(uint32)SAVE_32M_3690_start,(uint32*)SAVE_32M_3690_start);
+			fixAddressValue((uint32*)0x02061c24,(uint32*)0,1);//NandError
+			fixAddressValue((uint32*)0x020613cc,(uint32*)0xE3A00001,3);//NandInit 		
+			fixAddressValue((uint32*)0x020613D0,(uint32*)0xE12FFF1E,3);//NandInit 
+			fixAddressValue((uint32*)0x02061a4c,(uint32*)0xE3A00000,3);//NandResume 		
+			fixAddressValue((uint32*)0x02061a50,(uint32*)0xE12FFF1E,3);//NandResume 
+			fix_4951();
+		}
 		break;
 	default:
 		break;
