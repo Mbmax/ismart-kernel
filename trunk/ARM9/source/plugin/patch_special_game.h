@@ -50,6 +50,13 @@ const char *games[] = {
 		"CY9P",//0x25 /5114 - 企鹅俱乐部：精英企鹅部队 赫伯特的复仇（欧）
 		"CY9E",//0x26 /4970 - 企鹅俱乐部：精英企鹅部队 赫伯特的复仇（美）
 		"BOJJ",//0x27 /5197 - 海贼王：巨人战争（日）
+		"IRAJ",//0x28 /5215 - 口袋妖怪：白（日）
+		"IRBJ",//0x29 /5216 - 口袋妖怪：黑（日）
+		"BFLP",//0x2A /5237 - 我的模拟人生：蓝天英雄（欧）
+		"BDEJ",//0x2B /5240 - 病房2（日）
+		"BDEP",//0x2C /5246 - 病房2（欧）
+		"BK9J",//0x2D /5255 - 王国之心：编码重制版（日）
+		"UXBP",//0x2E /4951 - 大合奏！乐团兄弟DX（欧）
 		'\0',
 		'\0',
 };
@@ -593,12 +600,17 @@ void WriteFat2Flash(FAT_FILE * filePK , u32 startadd , uint32 usize,bool  needso
 void testSaver(char *SaverName)
 {   
     uint32 createSize = 0x80000; //512KB size
-	const char above2M_2385[] = "BANDBROS DX\0" ;
-	if(!memcmp(above2M_2385,(char*)0x27FFE00,12))
+	const char above2M_2385[] = "BANDBROS DX\0AXBJ" ;
+	if(!memcmp(above2M_2385,(char*)0x27FFE00,16))
 	{
 		createSize = 8*1024*1024 ;
 		dsCardi_WriteSram(0x7DFF0 , 0xB01); //Uses 00 fill
 		dsCardi_WriteSram(0x7DFF2 , 0);  	
+	}
+	const char above32M_4951[] = "BANDBROS DX\0UXBP" ;
+	if(!memcmp(above32M_4951,(char*)0x27FFE00,16))
+	{
+		createSize = 32*1024*1024 ;
 	}
 	const char save32M_3690[] = "DSMIO\0\0\0\0\0\0\0" ;
 	if(!memcmp(save32M_3690,(char*)0x27FFE00,12))
