@@ -53,7 +53,7 @@ TProcState *CurProcState;
 
 #define cpy_x (123+40)
 
-const char *VerName={"V1.01"};
+const char *VerName={"V1.02"};
 
 const TRect  menurect11={cpy_x,45+(16+4)+12,52,19};
 const TRect  menurect12={cpy_x,45+(16+4)*2+8,52,19};
