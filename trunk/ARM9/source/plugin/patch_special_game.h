@@ -604,13 +604,15 @@ void testSaver(char *SaverName)
 	if(!memcmp(above2M_2385,(char*)0x27FFE00,16))
 	{
 		createSize = 8*1024*1024 ;
-		dsCardi_WriteSram(0x7DFF0 , 0xB01); //Uses 00 fill
-		dsCardi_WriteSram(0x7DFF2 , 0);  	
+		dsCardi_WriteSram(0x7DFB8 , 0xB01); //Uses 00 fill
+		dsCardi_WriteSram(0x7DFBA , 0);  	
 	}
 	const char above32M_4951[] = "BANDBROS DX\0UXBP" ;
 	if(!memcmp(above32M_4951,(char*)0x27FFE00,16))
 	{
 		createSize = 32*1024*1024 ;
+		dsCardi_WriteSram(0x7DFB8 , 0xB01); //Uses 00 fill
+		dsCardi_WriteSram(0x7DFBA , 0);  
 	}
 	const char save32M_3690[] = "DSMIO\0\0\0\0\0\0\0" ;
 	if(!memcmp(save32M_3690,(char*)0x27FFE00,12))
@@ -626,8 +628,8 @@ void testSaver(char *SaverName)
 	const char save512_1566[] = "COMMONSENSE." ;
 	if(!memcmp(save512_1566,(char*)0x27FFE00,12))
 	{
-		dsCardi_WriteSram(0x7DFF0 , 0xB01); ////Uses 00 fill
-		dsCardi_WriteSram(0x7DFF2 , 0);  	
+		dsCardi_WriteSram(0x7DFB8 , 0xB01); //Uses 00 fill
+		dsCardi_WriteSram(0x7DFBA , 0);   	
 	}
 	const char save8M_5054[] = "ARTACADEMYRTVAAJ" ;
 	if(!memcmp(save8M_5054,(char*)0x27FFE00,13))		
