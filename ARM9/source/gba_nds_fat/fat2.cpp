@@ -638,7 +638,7 @@ FAT_FILE *CheckFile_in_Folder(char *CheckName,char*extname,char*Folder,uint32 cr
         filePK = FAT2_fopen_CreateForWrite_on_CurrentFolder(pafn_temp,w_saver);
         if(!memcmp(extname,"sav",3))
         {
-        	if(A9_ReadSram(0x7DFB8)==0xB01)//2436 必须初始化为0才正常 
+        	if(A9_ReadSram(0x7DF80)==0xB01)//2436 必须初始化为0才正常 
         		FAT2_SetSize(filePK,createSize,0x00);
         	else
         		FAT2_SetSize(filePK,createSize,0xAB);
