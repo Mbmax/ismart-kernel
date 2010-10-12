@@ -961,6 +961,7 @@ void Check_RTS(char *RTSName)
 		{
 		    memset((uint8*)0x2350000,0,0x10000);
 			WriteFat2_File(filePK,fileRTS,0x1000);//(FAT_FILE *filePK ,FAT_FILE * fileRTS ,uint32 startAddress)
+			WriteFat2_FPGA_SRAM(fileRTS,0x600,0);
 			FAT2_fclose(fileRTS);
 		}
         filePK ->write = 1 ;

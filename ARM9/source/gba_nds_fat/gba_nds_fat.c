@@ -678,7 +678,7 @@ u32 FAT_LinkFreeCluster(u32 cluster)
 
   // Check if the cluster already has a link, and return it if so
   curLink = FAT_NextCluster (cluster);
-  if ((curLink >= CLUSTER_FIRST) && (curLink < fatLastCluster))
+  if ((curLink >= CLUSTER_FIRST) && (curLink <= fatLastCluster))
   {
     return curLink;  // Return the current link - don't allocate a new one
   }
