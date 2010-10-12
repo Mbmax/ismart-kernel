@@ -5,15 +5,16 @@
 		0x0-0x600 reserved
 		0x600 - cluster for RTS.bin  RTG fat table begins at 0x1000
 		0x700 - 0x58050 - replace 0x5c000 - 4000000  registers backup //=0x4000240
-
+	
+		0x780 - use full 00 fill save file
 		0x79C - for RTS, SDK_STATIC_BSS_START-0x2000; starting backup address 2000000
 		0x7A8 - arm7 waiting code jump to reset address
 		0x7AC - arm7 waiting code starting address
 		
 		0x7B0 - Special game sign position, enabled sign 0xF5A05259, General game without the sign
 		0x7B4 - Special game setup position, saved position
-		0x7B8 - reserved
-		0x7BC - reserved
+		0x7B8 - swi B address
+		0x7BC - swi B instruction	
 		
 		0x7C0 - Soft Reset (Y/N)?
 		0x7C4 - Cheat finger?
@@ -101,14 +102,15 @@
 		0x600 - RTS.bin文件的簇 0x1000开始是即时攻略的fat表
 		0x700 - 0x58050 - 代替 0x5c000 - 4000000 寄存器备份 /=0x4000240
 		
+		0x780 - 存档文件使用全00填充
 		0x79C - 即时存档里用,SDK_STATIC_BSS_START-0x2000;起始备份2000000的地址
 		0x7A8 - arm7等待代码里跳到reset的地址
 		0x7AC - arm7等待代码开始地址
 		
 		0x7B0 - 金软特殊游戏设置标志位，启用标志 0xF5A05259 ，非此标志表示通用
 		0x7B4 - 金软的地址设置，即存放位置
-		0x7B8 - 保留
-		0x7BC - 保留
+		0x7B8 - swi B 地址
+		0x7BC - swi B 指令
 		
 		0x7C0 - 是否软复位
 		0x7C4 - 是否金手指
