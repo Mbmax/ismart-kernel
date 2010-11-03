@@ -7,6 +7,8 @@ typedef struct {
   bool GameGuide;
   bool CheatState;
   bool DownloadPlayState;
+  bool SpeciaMode;
+  u8 Speed;
 } TRomSetState;
 extern  TRomSetState RomSetState;
 extern  TRomSetState RomSetStateTmp;

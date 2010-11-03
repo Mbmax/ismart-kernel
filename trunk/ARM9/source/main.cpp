@@ -1380,6 +1380,13 @@ static int GetEnableCheatData(void)
            		RomSetState.DownloadPlayState=true;
            	else
            		RomSetState.DownloadPlayState=false;
+           	if(toSaveCheatData[0xb5]==0x01)
+           	{
+           		RomSetState.SpeciaMode=true;
+    			RomSetState.Speed=(toSaveCheatData[0xb6]==0)?5:toSaveCheatData[0xb6];
+           	}
+           	else
+           		RomSetState.SpeciaMode=false;
        	}
     	return;
     }
@@ -1409,7 +1416,14 @@ static int GetEnableCheatData(void)
        		RomSetState.DownloadPlayState=true;
        	else
        		RomSetState.DownloadPlayState=false;    	
-    	
+       	if(toSaveCheatData[0xb5]==0x01)
+       	{
+       		RomSetState.SpeciaMode=true;
+			RomSetState.Speed=(toSaveCheatData[0xb6]==0)?5:toSaveCheatData[0xb6];
+       	}
+       	else
+       		RomSetState.SpeciaMode=false; 
+       	
     	if(!RomSetState.CheatState)
     		return;    	
     	
@@ -1999,7 +2013,7 @@ static void EnterStartMenu(void)
         	pScreenMainOverlay->pCanvas->TextOutUTF8(80,30,Lang_GetUTF8("STS_NDS"));          
             break;
         }
-        pScreenMainOverlay->pCanvas->TextOutA(4,175,"Ver 1.02");   
+        pScreenMainOverlay->pCanvas->TextOutA(4,175,"Ver 1.03");   
 
         char DataTimeChar[256];
         memset(DataTimeChar,0,256);

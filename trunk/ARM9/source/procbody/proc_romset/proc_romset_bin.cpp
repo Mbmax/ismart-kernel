@@ -323,6 +323,7 @@ void OpenRomData()
 		memcpy(&SaveRomData[0xa0],RomSign,4);
 		//初始化romset的状态
 		memset((void*)&RomSetState,0x00,sizeof(TRomSetState));
+		RomSetState.Speed=(SaveRomData[0xb6]==0)?5:SaveRomData[0xb6];
 	}
 	else//外部名与内部名相符，读取数据初始化
 	{
@@ -346,6 +347,16 @@ void OpenRomData()
 			RomSetState.DownloadPlayState=true;
 		else
 			RomSetState.DownloadPlayState=false;
+		if(SaveRomData[0xb5])
+		{
+			RomSetState.SpeciaMode=true;
+			RomSetState.Speed=(SaveRomData[0xb6]==0)?5:SaveRomData[0xb6];
+		}		
+		else
+		{
+			RomSetState.SpeciaMode=false;
+			RomSetState.Speed=(SaveRomData[0xb6]==0)?5:SaveRomData[0xb6];
+		}
 		if(bFlag)
 		{
 			memcpy(&RomSetState,&RomSetStateTmp,sizeof(TRomSetState));
@@ -377,6 +388,13 @@ void CloseRomData()
 			SaveRomData[0xb4]=0x01;
 		else
 			SaveRomData[0xb4]=0x00;	
+		if(RomSetState.SpeciaMode==true)
+		{
+			SaveRomData[0xb5]=0x01;
+			SaveRomData[0xb6]=RomSetState.Speed;
+		}		
+		else
+			SaveRomData[0xb5]=0x00;	
 	 }
 	 {
 		 memcpy(&SaveRomData[0xa0],RomSign,5);
