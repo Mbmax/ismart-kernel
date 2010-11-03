@@ -521,14 +521,17 @@ CODE_IN_ITCM void rebootITCM(bool bMidstage)
    while(*(vuint16*)0x04000130 != 0x3ff);*/
    
 	Mart_DisableSpiWrite();//must use this function,if not this is dangerous for card!
-    if(0) 
-    {
-        ReadArm9To2000000();
-        *(vuint32*)0x27ffe60 = 0x587000 ;
+    if(RomSetState.SpeciaMode)
+    {      
+    	if(!RomSetState.DownloadPlayState)
+    	{
+    		*(vuint32*)0x27ffe60 = 0x586000 + (RomSetState.Speed*0x400) ;
+    	}
+    	ReadArm9To2000000();
     }
     else
     {
-        switch(A9_ReadSram(0x7DFF0))
+        switch(dsCardi_ReadSram(0x7DFF0))
     	{	        
         case 0x1E://4273_-_Mario_And_Sonic_At_The_Olympic_Winter
         case 0x1F://3966

@@ -53,17 +53,19 @@ bool isPressRect16=false;
 static u8 ItemIdx =0;
 //TProcState *CurProcState;
 
-const TRect  menurect11={190,18+(16+0)*1,30,19};
-const TRect  menurect12={190,18+(16+0)*2,30,19};
-const TRect  menurect13={190,18+(16+0)*3,30,19};
-const TRect  menurect14={190,18+(16+0)*4,30,19};
+const TRect  menurect11={190,18+(16+0)*1,30,19};//softreset
+const TRect  menurect12={190,18+(16+0)*2,30,19};//realtimesave
+const TRect  menurect13={190,18+(16+0)*3,30,19};//gameguide
+const TRect  menurect14={190,18+(16+0)*4,30,19};//cheat
 
-const TRect  menurect15={190,18+(16+0)*5,30,19};
+const TRect  menurect15={190,18+(16+0)*5,30,19};//downloadplay
+const TRect  menurect17={190,18+(16+0)*6,30,19};//cleanmode
+const TRect  menurect18={150,18+(16+0)*6,30,19};//speed
 
-const TRect  menurect16={45,18+(16+0)*6,60,19};
+const TRect  menurect16={45,18+(16+0)*4,140,19};//open cheatwindows
 
-const TRect  menurect00={60,18+(16+0)*7+2,68,24};
-const TRect  menurect01={140,18+(16+0)*7+2,68,24};
+const TRect  menurect00={60,18+(16+0)*7+2,68,24};//save
+const TRect  menurect01={140,18+(16+0)*7+2,68,24};//cancel
 
 
 static void CB_CancelBtn_Click(void *pComponentButton)
@@ -206,6 +208,13 @@ static void CB_KeyPress(u32 VsyncCount,u32 Keys)
     				else
     					pCurRomSetState->DownloadPlayState=true;					
 				}break;	
+    		case 5:
+    			{
+    				if(pCurRomSetState->SpeciaMode)
+    					pCurRomSetState->SpeciaMode=false;
+    				else
+    					pCurRomSetState->SpeciaMode=true;					
+				}break;	
 		    default: 
     			break;
     	}    	
@@ -249,12 +258,21 @@ static void CB_KeyPress(u32 VsyncCount,u32 Keys)
 				else
 					pCurRomSetState->DownloadPlayState=true;					
 			}break;	
+		case 5:
+			{
+				if(pCurRomSetState->SpeciaMode)
+					pCurRomSetState->SpeciaMode=false;
+				else
+					pCurRomSetState->SpeciaMode=true;	
+			}break;	
 		default: 
 			break;
     	}     	
     }
     if((Keys&KEY_DOWN)!=0)
     {
+    	if(ItemIdx==4)
+    		ItemIdx=5;
     	if(ItemIdx==3)
     		ItemIdx=4;
     	if(ItemIdx==2)
@@ -274,6 +292,8 @@ static void CB_KeyPress(u32 VsyncCount,u32 Keys)
 			ItemIdx=2;
 		if(ItemIdx==4)
 			ItemIdx=3;
+		if(ItemIdx==5)
+			ItemIdx=4;
 		
     }
   }
@@ -372,9 +392,32 @@ static void CB_MouseDown(s32 x,s32 y)
 	{	
 		if(pCurRomSetState->CheatState)
 		{
-			isPressRect16=true;
+			isPressRect16=false;
 			
 		}		
+	}
+	if(isInsideRect(menurect17,x,y)==true)
+	{	
+		{
+			if(pCurRomSetState->SpeciaMode)
+				pCurRomSetState->SpeciaMode=false;
+			else
+				pCurRomSetState->SpeciaMode=true;					
+			ItemIdx=5;
+		}
+		
+	}
+	if(isInsideRect(menurect18,x,y)==true)
+	{	
+		{
+			if(pCurRomSetState->SpeciaMode)
+			{
+				pCurRomSetState->Speed += 1;
+				if(pCurRomSetState->Speed == 11)
+					pCurRomSetState->Speed = 0;
+			}					
+		}
+		
 	}
 	if(isInsideRect(menurect00,x,y)==true)
 	{
@@ -439,7 +482,8 @@ static void CB_MouseUp(s32 x,s32 y)
 							 SetNextProc(ENP_Cheat,EPFE_CrossFade);
 						 	
 						 }
-					 }				
+					 }	
+					 else isPressRect16=true;
 				}	     
 			 
 			}
@@ -656,7 +700,7 @@ static void UpdataRomSet(void)
 	}
 	pTmpBM->SetFontTextColor(SYSColor1);
 	
-	pTmpBM->TextOutUTF8(45,18+(16+0)*4+2,Lang_GetUTF8("ROMSET_Cheat"));
+	//pTmpBM->TextOutUTF8(45,18+(16+0)*4+2,Lang_GetUTF8("ROMSET_Cheat"));
 	if(ItemIdx == 3)
 	{
 		/*pTmpBM->SetColor(RGB15(0x00,0x00,0x1f)|BIT(15));
@@ -666,10 +710,17 @@ static void UpdataRomSet(void)
 	}
 	if(pCurRomSetState->CheatState)
 	{
+		if(!isPressRect16)
+		{
+			DrawButtonBG(pTmpBM,45,18+(16+0)*4,137,17);
+			pTmpBM->TextOutUTF8(45,18+(16+0)*4+2,Lang_GetUTF8("ROMSET_OpenCheatWin"));
+		}
 		pTmpBM->TextOutUTF8(190,18+(16+0)*4+2,Lang_GetUTF8("ROMSET_CheatV1"));	
 	}
 	else
 	{
+		isPressRect16=false;
+		pTmpBM->TextOutUTF8(45,18+(16+0)*4+2,Lang_GetUTF8("ROMSET_Cheat"));
 		pTmpBM->TextOutUTF8(190,18+(16+0)*4+2,Lang_GetUTF8("ROMSET_CheatV2"));	
 	}	
 	pTmpBM->SetFontTextColor(SYSColor1);
@@ -691,9 +742,27 @@ static void UpdataRomSet(void)
 		pTmpBM->TextOutUTF8(190,18+(16+0)*5+2,Lang_GetUTF8("ROMSET_DownloadPlayV2"));	
 	}	
 	pTmpBM->SetFontTextColor(SYSColor1);
-	
-	
-	
+	pTmpBM->TextOutUTF8(45,18+(16+0)*6+2,Lang_GetUTF8("ROMSET_CleanMode"));
+	if(ItemIdx == 5)
+	{
+		/*pTmpBM->SetColor(RGB15(0x00,0x00,0x1f)|BIT(15));
+		pTmpBM->FillBox(190,18+(16+0)*4,25,17);
+		pTmpBM->SetFontTextColor(0xFFFF);*/
+		DrawButtonBG(pTmpBM,190,18+(16+0)*6,26,17);
+	}
+	if(pCurRomSetState->SpeciaMode)
+	{
+		pTmpBM->TextOutUTF8(190,18+(16+0)*6+2,Lang_GetUTF8("ROMSET_CleanModeV1"));
+		char string[5]={0};
+		sprintf(string, "%d ",pCurRomSetState->Speed); 
+		pTmpBM->TextOutUTF8(160,18+(16+0)*6+2,string);
+		DrawButtonBG(pTmpBM,150,18+(16+0)*6,26,17);
+	}
+	else
+	{
+		pTmpBM->TextOutUTF8(190,18+(16+0)*6+2,Lang_GetUTF8("ROMSET_CleanModeV2"));	
+	}
+	pTmpBM->SetFontTextColor(SYSColor1);	
 	
 	if(!pCurRomSetState->CheatState)
 	{
@@ -702,9 +771,10 @@ static void UpdataRomSet(void)
 	if(isPressRect16)
 	{
 		pTmpBM->SetFontTextColor(SYSColor2);
-		DrawButtonBG(pTmpBM,45,18+(16+0)*6,100,19);
+		//DrawButtonBG(pTmpBM,45,18+(16+0)*4,137,19);
+		pTmpBM->TextOutUTF8(45,18+(16+0)*4,"no cheat");	
 	}	
-	pTmpBM->TextOutUTF8(45,18+(16+0)*6+2,Lang_GetUTF8("ROMSET_OpenCheatWin"));	
+	//pTmpBM->TextOutUTF8(45,18+(16+0)*6+2,Lang_GetUTF8("ROMSET_OpenCheatWin"));	
 	pTmpBM->SetFontTextColor(SYSColor1);
 	if(isPressA)
 	{
