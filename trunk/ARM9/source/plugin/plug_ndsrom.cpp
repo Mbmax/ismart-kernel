@@ -179,7 +179,7 @@ CODE_IN_ITCM void HomeBrewRebootITCM(bool bMidstage)
    ReadArm9To2000000();
  	
    u8 *pFileBuf=(u8*)(0x02350000);
-   MemCopy8CPU(pFileBuf,(void *)(0x02000000+DLDI_section_start_address_ITCM),0x30000);
+   MemCopy8CPU(pFileBuf,(void *)(*(vuint32*)0x027ffe24+DLDI_section_start_address_ITCM),0x30000);
    MemSet32CPU(0,pFileBuf,0x30000);
    ITCM_DC_FlushAll();
 
