@@ -9,6 +9,7 @@ extern "C"
 extern uint32 patch_4511_data[];
 extern uint32 patch_4638_data[];
 extern uint32 patch_4800_data[];
+extern uint32 patch_5292_data[];
 //that games need some patcher
 const char *games[] = {
 		"UBRJ",//0x01 /0506 
@@ -57,6 +58,17 @@ const char *games[] = {
 		"BDEP",//0x2C /5246 - 病房2（欧）
 		"BK9J",//0x2D /5255 - 王国之心：编码重制版（日）
 		"UXBP",//0x2E /4951 - 大合奏！乐团兄弟DX（欧）
+		"VCDJ",//0x2F /5289 - 天空机器人（日）
+		"BO5J",//0x30 /5292 - 黄金太阳：漆黑的黎明（日）
+		"BO5P",//0x31 /5387 - 黄金太阳：漆黑的黎明（欧）
+		"BO5E",//0x32 /5367 - 黄金太阳：漆黑的黎明（美）
+		"B2KJ",//0x33 /5400 - 双重国度：漆黑的魔导士（日）
+		"V2GE",//0x34 /5325 - 马里奥对大金刚：迷你王国的大混乱（美）
+		"V2GJ",//0x35 /5386 - 马里奥对大金刚：迷你王国的大混乱（日）
+		"B3GJ",//0x36 /5371 - SD高达三国传 真三璃纱大战
+		"CS3E",//0x37 /4743 - 索尼克与世嘉全明星赛车（美）
+		"CS3P",//038 /4757 - 索尼克与世嘉全明星赛车（欧）
+		"VCMV",//0x39/5394 - 摇滚青春：最后的JAM（欧）
 		'\0',
 		'\0',
 };
@@ -215,7 +227,19 @@ bool GetGameSpecial(char* pbuf,const char *pFilename)
 		    			FixGame(pFilename,0x0000430C,0xFAE774DA,0xFAE74770);
 		    			break;    			
 		    		}
-
+		    	case 0x30://5292
+		    	case 0x31://5387
+		    	case 0x32://5367
+		    		{
+		    			MemCopy8CPU((void *)patch_5292_data,ptoAddress,0xF00/*sizeof(patch_4800_data)*/);
+		    			break;			    		
+		    		}
+		        case 0x36://5371
+		        	{
+		        		FixGame(pFilename,0x001089E4,0xE0A1C47A,0x30F1C47A);
+		        		FixGame(pFilename,0x00108b80,0xE091BDA6,0x30E1BDA6);
+		        		break;
+		        	}
 		        default:
 		    		break;	
 		    	}//end switch
@@ -1053,4 +1077,35 @@ uint32 patch_4800_data[]=
 0x020838ae,0x02095cbe,0x0209616e,0x02096382,
 0x0209650a,0x020a9968,0x020aaa20,0x020aaba8
   };
+uint32 patch_5292_data[]=
+{
+	0xE59F0008 ,0xE59F1008 ,0xE5801000 ,0xE12FFF1E,
+	0x0204B868 ,0xEBFED31C ,0x00000000 ,0x00000000,
+	0xE1A05000 ,0xE24DD008 ,0xE92D403F ,0xE2854004,				
+	0xE28D5024 ,0xE8950007 ,0xE2455008 ,0xE28F3004, 				
+	0xE885001F ,0xE8BD803F ,0xE8BD0004 ,0xE92D003F, 
+	0xE8920003 ,0xE0801001 ,0xE28F20E4 ,0xE28F3020, 
+	0xE3A04004 ,0xE59F50FC ,0xEB00001B ,0xE28F20DC, 
+	0xE28F303C ,0xE3A04008 ,0xE3A05000 ,0xEB000016, 
+	0xE8BD803F ,0xE5802004 ,0xE5802000 ,0xE58DE004, 
+	0xE92D003F ,0xE1A01005 ,0xE2410010 ,0xE28F20AC, 
+	0xE28F300C ,0xE3A04008 ,0xE3A05000 ,0xEB00000A, 
+	0xE8BDC03F ,0xE3A00000 ,0xE92D41FF ,0xE1A00005,
+	0xE080100B ,0xE28F2090 ,0xE28F3044 ,0xE3A04004,
+	0xE3A05000 ,0xEB000000 ,0xE8BD81FF ,0xE92D41FF, 
+	0xFA000021 ,0xE3500000 ,0x0AFFFFFA ,0xE0406004, 
+	0xFB000024 ,0xE38774EB ,0xE5867000 ,0xEE076F3E, 
+	0xE3550000 ,0x12466004 ,0x15865000 ,0x1E076F3E, 
+	0xEAFFFFF2 ,0xE92D500F ,0xE1A01004 ,0xE3510902, 
+	0x33A01902 ,0xE3A000B7 ,0xE1A00000 ,0xE1A00000, 
+	0xE59F2008 ,0xE12FFF32 ,0xE3A0E000 ,0xE8BD900F, 
+	0x02000041 ,0x3AFFFFF8 ,0xE5802004 ,0xE5802000, //0x02000041
+	0x3AFFFFAE ,0xE3A00000 ,0xE28DD008 ,0xE5C101AD, 
+	0xE5C101AE ,0xE5C101AF ,0xE92DC000 ,0xCA1CB5FC, 
+	0xD2084288 ,0x42AAC8E0 ,0x42B3D103 ,0x42BCD101, 
+	0x3808D002 ,0x2000E7F4 ,0x1B9FBDFC ,0x01BF3F08, 
+	0x47700A3F 
+};
 ///////////////////////
+//-------------------------------------------------------------------
+#include "Encryption.h"

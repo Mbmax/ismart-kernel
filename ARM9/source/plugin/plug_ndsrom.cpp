@@ -654,6 +654,8 @@ void RebootCommercialNDSROM(const char *pFilename)
     uint32 *p2x = (uint32*)0x27FFE00 ;
     FAT2_fread(p2x,1,0x160,FileHandle);
     //check special
+    char*filename = (char*)pFilename;
+    DecryptSecureArea(filename); 
     GetGameSpecial((char*)0x27FFE00,pFilename);
     p2x = (uint32*)0x2300000 ;  
     for(int i = 0 ; i< 0xf0000/4 ;i++)

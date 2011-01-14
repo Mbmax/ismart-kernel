@@ -365,6 +365,53 @@ CODE_IN_ITCM void patch_4800(void)
 	
 }
 //----------------------------------------------
+CODE_IN_ITCM void patch_5292(void)
+{
+	uint32* patch_5292_data = (uint32*)0x01FF7000;
+	//*(vuint32*)0x020009f8 = 0xEAFFFEB0;
+	*(vuint32*)0x0204B868 = 0xEBFED31C;
+	//--ww-- 登记写入
+	//WritePatchInfo_4BYTE((uint32)0x020009f8,(uint32)0xEAFFFEB0);
+	for(int tt=0;tt<104;tt++)
+	{
+		*((vuint32*)0x020004C0 + tt) = patch_5292_data[tt];
+	}
+	//WritePatchInfo((uint32)0x020004C0,104*4,patch_5292_data);
+}
+//----------------------------------------------
+CODE_IN_ITCM void patch_5387(void)
+{
+	uint32* patch_5292_data = (uint32*)0x01FF7000;
+	//*(vuint32*)0x020009f8 = 0xEAFFFDC0; 
+
+	*(vuint32*)0X0204BB24 = 0xEBFED17D;
+	//--ww-- 登记写入
+	WritePatchInfo_4BYTE((uint32)0X0204BB24,(uint32)0xEBFED17D);
+	patch_5292_data[80] = 0x02000331;//0X02059909;
+	//patch_5292_data[4] = 0X0204BB24;
+	//patch_5292_data[5] = 0xEBFED17D;
+	for(int tt=0;tt<101;tt++)
+	{
+		*((vuint32*)0x02000100 + tt) = patch_5292_data[tt];
+	}
+	WritePatchInfo((uint32)0x02000100,101*4,patch_5292_data);
+}
+//----------------------------------------------
+CODE_IN_ITCM void patch_5367(void)
+{
+	uint32* patch_5292_data = (uint32*)0x01FF7000;
+	//*(vuint32*)0x020009f8 = 0xEAFFFDC0; 
+	*(vuint32*)0X0204BA64 = 0xEBFED2AD;
+	//--ww-- 登记写入
+	WritePatchInfo_4BYTE((uint32)0X0204BA64,(uint32)0xEBFED2AD);	
+	patch_5292_data[80] = 0x02059849;
+	for(int tt=0;tt<101;tt++)
+	{
+		*((vuint32*)0x02000500 + tt) = patch_5292_data[tt];
+	}
+	WritePatchInfo((uint32)0x02000500,101*4,patch_5292_data);
+}
+//----------------------------------------------
 CODE_IN_ITCM uint32 fix_data_4375[13]={
 		0XE59D1000,0XE3510001,0X1A000003,0XE28F1010,
 		0XE891001E,0XE5813000,0XE5824000,0XE28DD02C,
@@ -383,7 +430,26 @@ CODE_IN_ITCM void patch_4375()//疯狂兔子回家
 	//--ww-- 登记写入
 	//WritePatchInfo((uint32)0x02001000,13*4,fix_data_4375);	
 }
-//-----------------------------------
+//----------------------------------------------
+CODE_IN_ITCM uint32 fix_data_5400[19]={
+		0xE59F0000,0xE12FFF1E,0x0000B3CF,0xE59F0000,
+		0xE12FFF1E,0x0000B177,0xE92D4007,0xE59F001C,
+		0xE59F101C,0xE5912000,0xE1500002,0x059F0014,
+		0x05810000,0x0280000C,0x0581003C,0xE8BD8007,
+		0x0215D7E0,0x0215C04C,0x02002300
+};
+CODE_IN_ITCM void patch_5400()
+{
+	*(vuint32*)0x020009f8 = 0xEAFFFE06; 
+	//--ww-- 登记写入
+	//WritePatchInfo_4BYTE((uint32)0x0203d108,(uint32)0xEBFF0FBC);
+	for(int tt=0;tt<19;tt++)
+	{
+		*((vuint32*)0x02000200 + tt) = fix_data_5400[tt];
+	}
+	//--ww-- 登记写入
+	//WritePatchInfo((uint32)0x02001000,13*4,fix_data_4375);	
+}
 //-----------------------------------------------
 CODE_IN_ITCM void patch_1981()
 {
@@ -539,6 +605,30 @@ CODE_IN_ITCM void patchSpecialGame(uint32 *r0_start,uint32 *r1_end)
 			fix_4951();
 		}
 		break;
+	case 0x30://5292
+		patch_5292();
+		break;
+	case 0x31://5387
+		patch_5387();
+		break;
+	case 0x32://5367
+		patch_5367();
+		break;
+	case 0x33://5400
+		patch_5400();
+		break;
+	case 0x34:
+	{
+        *(vuint32*)0x02039384 = 0xEA000008 ;
+        *(vuint32*)0x020398F0 = 0xFAFF25C4 ;//blx 2003008
+        break;
+	}
+	case 0x35:
+	{
+        *(vuint32*)0x02039D20 = 0xEA000008 ;
+        *(vuint32*)0x0203A28C = 0xFAFF235D ;
+		break;
+	}
 	default:
 		break;
 	}		
