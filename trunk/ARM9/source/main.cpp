@@ -2013,7 +2013,7 @@ static void EnterStartMenu(void)
         	pScreenMainOverlay->pCanvas->TextOutUTF8(80,30,Lang_GetUTF8("STS_NDS"));          
             break;
         }
-        pScreenMainOverlay->pCanvas->TextOutA(4,175,"Ver 1.03");   
+        pScreenMainOverlay->pCanvas->TextOutA(4,175,"Ver 1.04");   
 
         char DataTimeChar[256];
         memset(DataTimeChar,0,256);
