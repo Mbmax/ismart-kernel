@@ -625,7 +625,7 @@ static unsigned short CalcLogoCRC(struct Header header){
 }
 
 static unsigned char data[0x4000];
-static unsigned char tempdata[0x4000-0x200];
+static unsigned char tempdata[0x4000-0x1000];
 static  void EnDecryptSecureArea(char *ndsfilename, char endecrypt_option)
 {
 	fNDS = FAT_fopen(ndsfilename, "r+b");
@@ -658,8 +658,8 @@ static  void EnDecryptSecureArea(char *ndsfilename, char endecrypt_option)
 			init0(*(u32 *)header.gamecode);
 			//srand(*(u32 *)header.gamecode);
 			// clear data after header
-			FAT2_fseek(fNDS, 0x200, SEEK_SET);
-			for (i=0x200; i<0x1000; i++) FAT_fputc(0, fNDS);
+			/*FAT2_fseek(fNDS, 0x200, SEEK_SET);
+			for (i=0x200; i<0x1000; i++) FAT_fputc(0, fNDS);*/
 /*			// random data
 			fseek(fNDS, 0x1000, SEEK_SET);
 			for (unsigned int i=0x1000; i<0x4000; i++) fputc(rand(), fNDS);
@@ -715,11 +715,11 @@ static  void EnDecryptSecureArea(char *ndsfilename, char endecrypt_option)
 			int i;
 			if(decrypt_arm9(*(u32 *)header.gamecode, data)){FAT2_fclose(fNDS);return;}
 			// clear data after header
-			FAT2_fseek(fNDS, 0x200, SEEK_SET);
+			FAT2_fseek(fNDS, 0x1000, SEEK_SET);
 			//for (i=0x200; i<0x4000; i++) FAT_fputc(0, fNDS);
-			for(i=0;i<0x4000-0x200;i++)
+			for(i=0;i<0x4000-0x1000;i++)
 				tempdata[i] = 0;
-			FAT2_fwrite(tempdata, 1,0x4000-0x200, fNDS);
+			FAT2_fwrite(tempdata, 1,0x4000-0x1000, fNDS);
 			
 			// write secure 0x800
 			FAT2_fseek(fNDS, 0x4000, SEEK_SET);

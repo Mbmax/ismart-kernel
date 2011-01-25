@@ -579,6 +579,7 @@ CODE_IN_ITCM void patchSpecialGame(uint32 *r0_start,uint32 *r1_end)
 		}
 		break;
 	case 0x1D://4933
+	case 0x2C://5246
 		*(vuint32*)0x020E9120 = 0xE3A00002; 
 		WritePatchInfo_4BYTE((uint32)0x020E9120,0xE3A00002);
 		*(vuint32*)0x020E9124 = 0xEA000029; 
