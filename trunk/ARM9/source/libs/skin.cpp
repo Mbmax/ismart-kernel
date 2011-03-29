@@ -1410,8 +1410,8 @@ void Skin_Load_FileList(void)
   FileListAlpha_Init(ProcState.FileList.Mode);
   FileListClockAlpha_Init();
   //MP3CntAlpha_Init();
- // StandbyClock_Init(ProcState.FileList.ScreenSaver_BlackMode);
-//  StandbyClockAlpha_Init(ProcState.FileList.ScreenSaver_BlackMode);
+  StandbyClock_Init(ProcState.FileList.ScreenSaver_BlackMode);
+  StandbyClockAlpha_Init(ProcState.FileList.ScreenSaver_BlackMode);
   PrfEnd(0);
   PrintFreeMem();
   extmem_ShowMallocInfo();

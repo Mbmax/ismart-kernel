@@ -828,7 +828,7 @@ static void FileList_SubDrawBG(TScrollBar *psb)
 	TiniSkinUser *SkinUser=&GlobalUserINI;
 	if(Backlight_isStandby()==true)
     {//出于standby状态的时候 ， sub需要显示Clock信息，主屏关闭
-        //FileList_SubDrawBG_Standby(psb);
+        FileList_SubDrawBG_Standby(psb);
         return;
     }
     //显示什么？
