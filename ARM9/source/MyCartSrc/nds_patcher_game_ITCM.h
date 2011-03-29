@@ -1,43 +1,28 @@
 //////////////////////////////////////////////////////
 //////////////////////////////////////////////////////
-CODE_IN_ITCM uint32 fix_data_5215[]={
+CODE_IN_ITCM uint32 fix_data_Pokemon[]={
 		 0xE59F003C,0xE5901000,0xE59F2038,0xE1510002,
 		 0x059F1034,0x05801008,0x05801148,0x059F102C,
 		 0x058010A8,0x058011E8,0xE59F0024,0xE5901000,
 		 0xE59F2020,0xE1510002,0x03A01001,0x05C0100A,
-		 0xE12FFF1E,0x02188084,0xE15F034F,0x36AAB337,
-		 0x36AAE06A,0x02180C80,0x28AAFF1F,
+		 0xE12FFF1E,0x00000000,0xE15F034F,0x36AAB337,
+		 0x36AAE06A,0x00000000,0x28AAFF1F,
 };
-CODE_IN_ITCM void patch_5215(void)//口袋 白
+CODE_IN_ITCM void patch_global_Pokemon(uint32 b_address,uint32 b_code,uint32 to_address,uint32 replace1,uint32 replace2)
 {
-	if(*(vuint32*)0X02004EA4 == 0XE12FFF1E)
+	if(*(vuint32*)b_address == 0XE12FFF1E)
 	{
-		*(vuint32*)0X02004EA4 = 0xEAFFFDD5;	
+		*(vuint32*)b_address = b_code;	
 		//--ww-- 登记写入
-		WritePatchInfo_4BYTE((uint32)0X02004EA4,(uint32)0xEAFFFDD5);
+		WritePatchInfo_4BYTE((uint32)b_address,(uint32)b_code);
+		fix_data_Pokemon[17] = replace1;
+		fix_data_Pokemon[21] = replace2;
 		for(int tt=0;tt<23;tt++)
 		{
-			*((vuint32*)0x02004600 + tt) = fix_data_5215[tt];
+			*((vuint32*)to_address + tt) = fix_data_Pokemon[tt];
 		}
 		//--ww-- 登记写入
-		WritePatchInfo((uint32)0x02004600,23*4,fix_data_5215);
-	}	
-}
-CODE_IN_ITCM void patch_5216(void)//口袋 黑
-{
-	if(*(vuint32*)0X02004EA4 == 0XE12FFF1E)
-	{
-		*(vuint32*)0X02004EA4 = 0xEAFFFDED;	
-		//--ww-- 登记写入
-		WritePatchInfo_4BYTE((uint32)0X02004EA4,(uint32)0xEAFFFDED);
-		fix_data_5215[17] = 0x02188064;
-		fix_data_5215[21] = 0x02180C60;
-		for(int tt=0;tt<23;tt++)
-		{
-			*((vuint32*)0x02004660 + tt) = fix_data_5215[tt];
-		}
-		//--ww-- 登记写入
-		WritePatchInfo((uint32)0x02004660,23*4,fix_data_5215);
+		WritePatchInfo((uint32)to_address,23*4,fix_data_Pokemon);
 	}	
 }
 CODE_IN_ITCM void patch_4638(void)//魔法门
@@ -450,6 +435,24 @@ CODE_IN_ITCM void patch_5400()
 	//--ww-- 登记写入
 	//WritePatchInfo((uint32)0x02001000,13*4,fix_data_4375);	
 }
+CODE_IN_ITCM void patch_global_pp(uint32 b_address,uint32 b_code,uint32 to_address,uint32 replace1,uint32 replace2,uint32 replace3)
+{
+	if(*(vuint32*)b_address == 0XE12FFF1E)
+	{
+		*(vuint32*)b_address = b_code;	
+		//--ww-- 登记写入
+		WritePatchInfo_4BYTE((uint32)b_address,(uint32)b_code);
+		fix_data_5400[16] = replace1;
+		fix_data_5400[17] = replace2;
+		fix_data_5400[18] = replace3;
+		for(int tt=0;tt<19;tt++)
+		{
+			*((vuint32*)to_address + tt) = fix_data_5400[tt];
+		}
+		//--ww-- 登记写入
+		WritePatchInfo((uint32)to_address,19*4,fix_data_5400);
+	}	
+}
 //-----------------------------------------------
 CODE_IN_ITCM void patch_1981()
 {
@@ -586,10 +589,10 @@ CODE_IN_ITCM void patchSpecialGame(uint32 *r0_start,uint32 *r1_end)
 		WritePatchInfo_4BYTE((uint32)0x020E9124,0xEA000029);
 		break;
 	case 0x28:
-		patch_5215();//口袋 白
+		patch_global_Pokemon(0X02004EA4 ,0xEAFFFDD5,0x02004600,0x02188084,0x02180C80);
 		break;
 	case 0x29:
-		patch_5216();//口袋 黑
+		patch_global_Pokemon(0X02004EA4 ,0xEAFFFDED,0x02004660,0x02188064,0x02180C60);
 		break;
 	case 0x2E://4951 大合奏
 		{	
@@ -630,6 +633,62 @@ CODE_IN_ITCM void patchSpecialGame(uint32 *r0_start,uint32 *r1_end)
         *(vuint32*)0x0203A28C = 0xFAFF235D ;
 		break;
 	}
+	case 0x3A:
+	{
+        *(vuint32*)0x0203A888 = 0xEA000008 ;
+        *(vuint32*)0x0203ADF4 = 0xFAFF2083 ;
+		break;
+	}
+	case 0x3B://5584
+		patch_global_Pokemon(0X02004EA4 ,0xEAFFFDD5,0x02004600,0x02187F84,0x02180A00);
+		break;
+	case 0x3C://5585
+		patch_global_Pokemon(0X02004EA4 ,0xEAFFFDED,0x02004660,0x02187F64,0x021809E0);
+		break;
+	case 0x3D://5586
+		patch_global_Pokemon(0X02004EA4 ,0xEAFFFDD5,0x02004600,0x02188004,0x02180980);
+		break;
+	case 0x3E://5587
+		patch_global_Pokemon(0X02004EA4 ,0xEAFFFDED,0x02004660,0x02187EE4,0x02180960);
+		break;
+	case 0x3F://5588
+		patch_global_Pokemon(0X02004EA4 ,0xEAFFFDD5,0x02004600,0x02187EC4,0x02180940);
+		break;
+	case 0x40://5589
+		patch_global_Pokemon(0X02004EA4 ,0xEAFFFDED,0x02004660,0x02187EA4,0x02180920);
+		break;
+	case 0x41://5593
+		patch_global_Pokemon(0X02004EA4 ,0xEAFFFDD5,0x02004600,0x02187F84,0x02180A00);
+		break;	
+	case 0x42://5594
+		patch_global_Pokemon(0X02004EA4 ,0xEAFFFDED,0x02004660,0x02187F64,0x021809E0);
+		break;
+	case 0x43://5598-PEB
+		patch_global_Pokemon(0X02004EA4 ,0xEAFFFDD5,0x02004600,0x02187F24,0x021809A0);
+		break;
+	case 0x44://5599-PEN
+		patch_global_Pokemon(0X02004EA4 ,0xEAFFFDED,0x02004660,0x02187F24,0x021809A0);
+		break;
+	case 0x45://5600-PVB
+		patch_global_Pokemon(0X02004EA4 ,0xEAFFFDD5,0x02004600,0x02187E84,0x02180900);
+		break;	
+	case 0x46://5601-PVN
+		patch_global_Pokemon(0X02004EA4 ,0xEAFFFDED,0x02004660,0x02187E64,0x021808E0);
+		break;
+	case 0x47://5499
+		fix_data_5400[5] = 0xA2DD;
+		patch_global_pp(0X020009f8 ,0xEAFFFF06,0x02000600,0x020F8DC0,0x020F7198,0x02002700);
+		break;
+	case 0x48://5529
+		patch_global_pp(0X020009f8 ,0xEAFFFEC6,0x02000500,0x020E84B0,0x020E6D1C,0x02002600);
+		break;
+	case 0x49://5530
+		fix_data_5400[5] = 0xA2DD;
+		patch_global_pp(0X020009f8 ,0xEAFFFF0A,0x02000610,0x0212AB20,0x02128EF8,0x02002710);
+		break;
+	case 0x4A://5592
+		patch_global_pp(0X020009f8 ,0xEAFFFEC6,0x02000500,0x022DFC30,0x022DE4E4,0x02002600);
+		break;
 	default:
 		break;
 	}		

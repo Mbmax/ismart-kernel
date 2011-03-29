@@ -97,7 +97,7 @@ static void Backlight_ResetTimer(void)
 {
   if(BacklightTimeout==0){
     //2009.04.09 modify by mj 取消超时交换上下屏内容		
-	//if(ShellSet.SwapDisp==true) REG_POWERCNT|=POWER_SWAP_LCDS;
+	if(ShellSet.SwapDisp==true) REG_POWERCNT|=POWER_SWAP_LCDS;
     IPC6->LCDPowerControl=LCDPC_ON_BOTH;
     ForceUpdateSubScreenFlag=true;
   }
@@ -121,9 +121,9 @@ static void Backlight_VsyncUpdate(u32 VsyncCount)
   
   if(BacklightTimeout==0){
     //2009.04.09 modify by mj 取消超时关主屏电源，以及交换上下屏内容
-	/*if(ShellSet.SwapDisp==true) REG_POWERCNT&=~POWER_SWAP_LCDS;
-    IPC6->LCDPowerControl=LCDPC_ON_TOP;*/
-	IPC6->LCDPowerControl=LCDPC_ON_BOTH;
+	if(ShellSet.SwapDisp==true) REG_POWERCNT&=~POWER_SWAP_LCDS;
+    IPC6->LCDPowerControl=LCDPC_ON_TOP;
+	//IPC6->LCDPowerControl=LCDPC_ON_BOTH;
   }
 }
 
