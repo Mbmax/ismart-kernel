@@ -1,0 +1,1 @@
+Project use for Ismart dscard.Uses RVDS4.0 to compile.
